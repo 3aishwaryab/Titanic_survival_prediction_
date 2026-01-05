@@ -1,0 +1,39 @@
+{
+  "best_name": "svc",
+  "results": {
+    "logistic": {
+      "best_params": {
+        "clf__C": 0.1,
+        "clf__penalty": "l2",
+        "clf__solver": "lbfgs"
+      },
+      "cv_accuracy": 0.8090712104796612,
+      "cv_precision": 0.7860889201124047,
+      "cv_recall": 0.6924579124579124,
+      "cv_f1": 0.7344693643770981,
+      "cv_roc_auc": 0.8640358918336973
+    },
+    "random_forest": {
+      "best_params": {
+        "clf__max_depth": 10,
+        "clf__n_estimators": 50
+      },
+      "cv_accuracy": 0.8118388653599921,
+      "cv_precision": 0.7814096422334078,
+      "cv_recall": 0.7071380471380471,
+      "cv_f1": 0.741608715861768,
+      "cv_roc_auc": 0.864506018914326
+    },
+    "svc": {
+      "best_params": {
+        "clf__C": 10,
+        "clf__kernel": "rbf"
+      },
+      "cv_accuracy": 0.8244853737811486,
+      "cv_precision": 0.8080186384349197,
+      "cv_recall": 0.7144781144781144,
+      "cv_f1": 0.7558261667239995,
+      "cv_roc_auc": 0.8608658159441858
+    }
+  }
+}

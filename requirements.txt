@@ -1,0 +1,13 @@
+pandas==2.2.2
+numpy==1.26.4
+scikit-learn==1.3.2
+joblib==1.3.2
+streamlit==1.24.1
+fastapi==0.100.0
+uvicorn==0.23.2
+pydantic==2.5.1
+matplotlib==3.8.2
+seaborn==0.13.2
+pytest==7.4.2
+# dill is required to unpickle some saved pipeline artifacts
+dill

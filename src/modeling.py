@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_sc
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 from sklearn.metrics import (
     accuracy_score,
@@ -33,6 +34,11 @@ def build_model_candidates(random_state: int = RANDOM_SEED) -> Dict[str, Tuple[P
     pipe_lr = Pipeline(steps=[("preprocessor", preprocessor), ("clf", LogisticRegression(random_state=random_state, max_iter=1000))])
     param_grid_lr = {"clf__C": [0.01, 0.1, 1, 10], "clf__penalty": ["l2"], "clf__solver": ["lbfgs"]}
     candidates["logistic"] = (pipe_lr, param_grid_lr)
+
+    # Decision Tree
+    pipe_dt = Pipeline(steps=[("preprocessor", preprocessor), ("clf", DecisionTreeClassifier(random_state=random_state))])
+    param_grid_dt = {"clf__max_depth": [3, 5, 10, None], "clf__min_samples_split": [2, 5, 10], "clf__min_samples_leaf": [1, 2, 4]}
+    candidates["decision_tree"] = (pipe_dt, param_grid_dt)
 
     # Random Forest
     pipe_rf = Pipeline(steps=[("preprocessor", preprocessor), ("clf", RandomForestClassifier(random_state=random_state))])

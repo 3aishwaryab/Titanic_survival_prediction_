@@ -11,3 +11,5 @@ seaborn==0.13.2
 pytest==7.4.2
 # dill is required to unpickle some saved pipeline artifacts
 dill
+# SHAP for model explainability
+shap>=0.42.0

@@ -20,12 +20,15 @@ This repository refactors the academic Titanic project into a modular, productio
 - Clean, modular PEP8-compliant code with docstrings and type hints
 - Domain-aware feature engineering: `FamilySize`, `IsAlone`, title extraction + rare title grouping, `AgeBin`, `FareBin`, interaction-ready features
 - Categorical encoding (OneHot) and numeric scaling (StandardScaler)
-- Model candidates: Logistic Regression, Random Forest, SVM
+- Model candidates: Logistic Regression, **Decision Tree**, Random Forest, SVM
 - Cross-validation and GridSearchCV for hyperparameter tuning
 - Evaluation: Accuracy, Precision, Recall, F1, ROC AUC, Confusion Matrix
+- **Feature importance visualization** for tree-based models
+- **SHAP explanations** for model interpretability ("Why did passenger X survive?")
 - Streamlit app with sidebar filters and single-passenger prediction (live confidence %)
 - FastAPI inference service accepting JSON payloads and returning probability
 - Dockerfile to run the Streamlit app
+- **Ready for Streamlit Cloud deployment**
 
 ## How to run locally 🧪
 1. Create and activate a virtual environment:
@@ -74,7 +77,39 @@ docker run -p 8501:8501 titanic-app
 - Training artifacts (metrics JSON and plot PNGs) are saved under `models/metrics_*.json`, `models/confusion_matrix_*.png` and `models/roc_curve_*.png` for reproducibility and grading.
 - If you see errors while loading a saved model about a missing module (e.g., `ModuleNotFoundError: No module named 'dill'`) or warnings about scikit-learn versions, run `pip install -r requirements.txt` to install `dill` and use the pinned `scikit-learn==1.3.2` for best compatibility.
 
+## Deployment 🚀
+
+### Streamlit Cloud (Recommended - Free)
+
+1. Push your code to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Connect your repository
+4. Set main file path: `app/streamlit_app.py`
+5. Deploy!
+
+**Your app will be live at:** `https://<your-username>-titanic-project.streamlit.app`
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
+
+### Local Deployment
+
+```bash
+streamlit run app/streamlit_app.py
+```
+
+## New Features ✨
+
+### Model Interpretability
+- **Feature Importance**: See which features drive predictions (for tree-based models)
+- **SHAP Explanations**: Understand "Why did passenger X survive?" with interactive explanations
+- Both features are integrated into the Streamlit app
+
+### Model Candidates
+- **Decision Tree** added to model selection pipeline
+- All models evaluated with 5-fold cross-validation and GridSearchCV
+
 ## Next steps & improvements
 - Add CI with linting and unit tests for preprocessing, model training, and API endpoints
 - Add more advanced feature encoding (target encoding / embeddings)
 - Add structured logging and observability for production inference
+- Add learning curve analysis for bias-variance diagnosis
